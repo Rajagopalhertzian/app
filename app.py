@@ -1,7 +1,5 @@
 import requests
 from flask import Flask, request, jsonify
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 # Flask setup
 app = Flask(__name__)
@@ -19,7 +17,6 @@ payload = {
 response = requests.post(url, json=payload)
 token_data = response.json()
 access_token = token_data['access_token']
-refresh_token = token_data['refresh_token']
 
 # Step 2: Fetching Projects using Access Token
 @app.route('/api/projects', methods=['GET'])
@@ -34,19 +31,9 @@ def get_projects():
 @app.route('/webhook/procore', methods=['POST'])
 def webhook_handler():
     data = request.json
-    # Logic to handle new/updated/deleted project events
-    # Example: Store data in Postgres SQL
-    store_project_data(data)
+    # You can log the data or perform any processing here
+    print(data)
     return '', 200
-
-# Database setup
-engine = create_engine('postgresql://username:password@localhost/dbname')
-Session = sessionmaker(bind=engine)
-session = Session()
-
-def store_project_data(data):
-    # Logic to store project data in database
-    pass
 
 if __name__ == '__main__':
     app.run(port=5000)
