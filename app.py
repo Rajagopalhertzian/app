@@ -11,7 +11,7 @@ payload = {
     "code": "<AUTHORIZATION_CODE>",
     "client_id": "5QZrxCaoj8gzTSJjxrqdUF-bIy_b0uJJyF3gSlCWx6o",
     "client_secret": "On3oTtWjtFENHGMekuSpzGNDw8Yg3pHedN2WuZB69bA",
-    "redirect_uri": "http://localhost",
+    "redirect_uri": "https://app-seven-beige.vercel.app/",  # Use the correct Vercel domain
 }
 
 response = requests.post(url, json=payload)
